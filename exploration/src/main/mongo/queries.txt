@@ -1,0 +1,30 @@
+for(var i =1; i<14; i++){
+
+print(i + ','
++ db.getCollection('OnceBurned-'+i+'-0').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-1').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-2').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-3').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-4').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-5').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-6').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-7').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-8').count({}) + ','
++ db.getCollection('OnceBurned-'+i+'-9').count({}));
+}
+
+
+for(var i =1; i<14; i++){
+
+print(i + ','
++ db.getCollection('RollingSolution-'+i+'-0').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-1').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-2').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-3').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-4').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-5').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-6').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-7').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-8').count({}) + ','
++ db.getCollection('RollingSolution-'+i+'-9').count({}));
+}
