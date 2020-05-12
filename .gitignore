@@ -2,3 +2,13 @@
 /exploration/.project
 /exploration/.settings
 /exploration/target
+/.project
+/.settings/*.prefs
+/queens-core/*.classpath
+/queens-core/*.project
+/queens-core/.settings/*.prefs
+/queensa1/target
+/queens-core/target
+/queensa1/*.classpath
+/queensa1/*.project
+/queensa1/.settings/*.prefs
