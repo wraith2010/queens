@@ -2,6 +2,9 @@ package com.ten31f.queens.v1;
 
 import java.util.Random;
 
+import com.ten31f.queens.action.Permutator;
+import com.ten31f.queens.action.Validator;
+import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.v1.ai.Player;
 import com.ten31f.queens.v1.ai.RollingSolution;
 import com.ten31f.queens.v1.concepts.Game;
@@ -16,9 +19,9 @@ public class PlayTillWin {
 
 		Game game = null;
 
-		//Player player = new OnceBurned(LIMIT, new Random(System.nanoTime()));
+		// Player player = new OnceBurned(LIMIT, new Random(System.nanoTime()));
 		Player player = new RollingSolution(LIMIT, new Random(System.nanoTime()));
-		
+
 		while (true) {
 
 			gameCount++;
@@ -26,7 +29,7 @@ public class PlayTillWin {
 			player.reset();
 
 			game = new Game(LIMIT);
-			while (!game.isfull() && !player.giveUp()) {
+			while (!Validator.isComplete(game.getSolution()) && !player.giveUp()) {
 
 				int[] newPosition = player.nextPosition();
 
@@ -34,22 +37,23 @@ public class PlayTillWin {
 
 			}
 
-			if (game.solved())
+			Solution solution = game.getSolution();
+			Permutator.permutate(solution);
+
+			if (Validator.validate(solution))
 				break;
 
 			System.out.println("Game:\t" + gameCount);
 
-			game.findMirrors();
+			Permutator.permutate(solution);
 
-			System.out.println(game.getSolution());
+			System.out.println(solution);
 
 		}
 
-		System.out.println("Game:\t" + gameCount);
-
-		game.findMirrors();
-
-		System.out.println(game.getSolution());
+		Solution solution = game.getSolution();
+		Permutator.permutate(solution);
+		System.out.println(solution);
 
 	}
 

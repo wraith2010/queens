@@ -1,6 +1,8 @@
 package com.ten31f.queens.v1.scripts;
 
 import com.mongodb.DB;
+import com.ten31f.queens.action.Permutator;
+import com.ten31f.queens.action.Validator;
 import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.v1.ai.Player;
 import com.ten31f.queens.v1.concepts.Game;
@@ -23,15 +25,14 @@ public class CatchThemAll extends AbstractScript {
 			getPlayer().reset();
 
 			Game game = new Game((int) getN());
-			while (!game.isfull() && !getPlayer().giveUp()) {
+			while (!Validator.isComplete(game.getSolution()) && !getPlayer().giveUp()) {
 				int[] newPosition = getPlayer().nextPosition();
 				getPlayer().digest(newPosition, game.addPosition(newPosition[0], newPosition[1]));
 			}
 
-			game.solved();
-			game.findMirrors();
-
 			Solution solution = game.getSolution();
+			Validator.validate(solution);
+			Permutator.permutate(solution);
 
 			if (recordGame(solution)) {
 				setRecorded(getRecorded() + 1);

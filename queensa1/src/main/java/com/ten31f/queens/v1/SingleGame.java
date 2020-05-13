@@ -4,6 +4,9 @@ import java.util.Random;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ten31f.queens.action.Permutator;
+import com.ten31f.queens.action.Validator;
+import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.v1.ai.Player;
 import com.ten31f.queens.v1.ai.RollingSolution;
 import com.ten31f.queens.v1.concepts.Game;
@@ -21,17 +24,18 @@ public class SingleGame {
 		Player player = new RollingSolution(LIMIT, new Random(System.nanoTime()));
 
 		Game game = new Game(LIMIT);
-		while (!game.isfull() && !player.giveUp()) {
+		while (!Validator.isComplete(game.getSolution()) && !player.giveUp()) {
 
 			int[] newPosition = player.nextPosition();
 
 			player.digest(newPosition, game.addPosition(newPosition[0], newPosition[1]));
 		}
 
-		game.findMirrors();
+		Solution solution = game.getSolution();
+		Permutator.permutate(solution);
 
 		Gson gson = new GsonBuilder().create();
-		gson.toJson(game.getSolution(), System.out);
+		gson.toJson(solution, System.out);
 
 	}
 }

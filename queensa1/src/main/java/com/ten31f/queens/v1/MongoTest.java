@@ -12,6 +12,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.util.JSON;
+import com.ten31f.queens.action.Permutator;
+import com.ten31f.queens.action.Validator;
 import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.v1.ai.OnceBurned;
 import com.ten31f.queens.v1.ai.Player;
@@ -43,7 +45,7 @@ public class MongoTest {
 
 			Player player = new OnceBurned(LIMIT, new Random(System.nanoTime()));
 
-			while (!game.isfull() && !player.giveUp()) {
+			while (!Validator.isComplete(game.getSolution()) && !player.giveUp()) {
 
 				int[] newPosition = player.nextPosition();
 
@@ -51,9 +53,8 @@ public class MongoTest {
 
 			}
 
-			game.findMirrors();
-
 			Solution solution = game.getSolution();
+			Permutator.permutate(solution);
 
 			Gson gson = new GsonBuilder().create();
 

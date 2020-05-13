@@ -12,3 +12,7 @@
 /queensa1/*.classpath
 /queensa1/*.project
 /queensa1/.settings/*.prefs
+/queens-genetic/*.classpath
+/queens-genetic/*.gitignore
+/queens-genetic/*.project
+/queens-genetic/.settings/*.prefs

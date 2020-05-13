@@ -8,24 +8,24 @@ public class Solution {
 
 	private static final String SQUARE = "[%s]";
 
-	private int n = 0;
+	private long n = 0;
 	private List<int[]> permutations;
 	private int initialPosition = 0;
 
 	private boolean solved = false;
 
-	public Solution(int n) {
+	public Solution(long n) {
 		setN(n);
 		setPermutations(new ArrayList<int[]>());
-		getPermutations().add(new int[n]);
-		Arrays.fill(getPrimary(), 0, n, -1);
+		getPermutations().add(new int[(int) n]);
+		Arrays.fill(getPrimary(), 0, (int) n, -1);
 	}
 
-	public int getN() {
+	public long getN() {
 		return n;
 	}
 
-	public void setN(int n) {
+	public void setN(long n) {
 		this.n = n;
 	}
 
@@ -43,7 +43,7 @@ public class Solution {
 
 		getPrimary()[y] = x;
 	}
-
+	
 	public boolean isSolved() {
 		return solved;
 	}

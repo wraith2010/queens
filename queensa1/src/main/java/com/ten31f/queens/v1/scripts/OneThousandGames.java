@@ -2,6 +2,8 @@ package com.ten31f.queens.v1.scripts;
 
 import com.google.gson.GsonBuilder;
 import com.mongodb.DB;
+import com.ten31f.queens.action.Permutator;
+import com.ten31f.queens.action.Validator;
 import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.v1.ai.Player;
 import com.ten31f.queens.v1.concepts.Game;
@@ -25,7 +27,7 @@ public class OneThousandGames extends AbstractScript {
 			getPlayer().reset();
 
 			Game game = new Game((int) getN());
-			while (!game.isfull() && !getPlayer().giveUp()) {
+			while (!Validator.isComplete(game.getSolution()) && !getPlayer().giveUp()) {
 
 				int[] newPosition = getPlayer().nextPosition();
 
@@ -33,9 +35,8 @@ public class OneThousandGames extends AbstractScript {
 
 			}
 
-			game.findMirrors();
-
 			Solution solution = game.getSolution();
+			Permutator.permutate(solution);
 
 			if (recordGame(solution)) {
 				setRecorded(getRecorded() + 1);
