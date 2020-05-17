@@ -71,9 +71,15 @@ public class Solution {
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 
-		stringBuilder.append(Arrays.toString(getPrimary()));
 		stringBuilder.append(System.lineSeparator());
+		
+		for(int[] permutation: getPermutations()) {
+			stringBuilder.append(Arrays.toString(permutation));
+			stringBuilder.append(System.lineSeparator());
+		}
+				
 
+		stringBuilder.append(System.lineSeparator());
 		for (int y = 0; y < n; y++) {
 			for (int x = 0; x < n; x++) {
 				stringBuilder.append(String.format(SQUARE, (getPrimary()[y] == x) ? 'Q' : ' '));

@@ -10,6 +10,8 @@ import com.ten31f.queens.action.Validator;
 import com.ten31f.queens.domain.Solution;
 import com.ten31f.queens.engine.Engine;
 import com.ten31f.queens.engine.Outcome;
+import com.ten31f.queens.repo.SolutionRepo;
+import com.ten31f.queens.repo.SolutionRepo.SaveOutcome;
 import com.ten31f.queens.values.KNOWNSOLUTIONS;
 
 public class GenerateData {
@@ -22,10 +24,13 @@ public class GenerateData {
 	private List<Solution> solutions = null;
 	private Engine engine = null;
 
-	public GenerateData(long n,Engine engine) {
+	private SolutionRepo solutionRepo = null;
+
+	public GenerateData(long n, Engine engine, SolutionRepo solutionRepo) {
 		setN(n);
 		setSolutions(new ArrayList<>());
 		setEngine(engine);
+		setSolutionRepo(solutionRepo);
 	}
 
 	public long getN() {
@@ -45,23 +50,26 @@ public class GenerateData {
 		long limit = KNOWNSOLUTIONS.FUNDAMENTAL[(int) (getN() - 1)];
 
 		while (getSolutions().size() < limit) {
+
+			getEngine().reset();
+
 			Solution solution = new Solution(getN());
 
 			while (!Validator.isComplete(solution) && !getEngine().giveUp()) {
-
 				int[] newPosition = getEngine().nextPosition();
-
 				getEngine().digest(newPosition, addPosition(newPosition[0], newPosition[1], solution));
-
 			}
 
-			Permutator.permutate(solution);
-
 			if (Validator.validate(solution)) {
-				getSolutions().add(solution);
+				Permutator.permutate(solution);
+				logger.info(solution);
+				if (SaveOutcome.UNIQUE == getSolutionRepo().save(solution)) {
+					getSolutions().add(solution);
+				}
 			}
 
 		}
+
 	}
 
 	public Outcome addPosition(int x, int y, Solution solution) {
@@ -96,4 +104,11 @@ public class GenerateData {
 		this.engine = engine;
 	}
 
+	private SolutionRepo getSolutionRepo() {
+		return solutionRepo;
+	}
+
+	private void setSolutionRepo(SolutionRepo solutionRepo) {
+		this.solutionRepo = solutionRepo;
+	}
 }

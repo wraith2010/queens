@@ -1,6 +1,5 @@
 package com.ten31f.queens.v1;
 
-import java.net.UnknownHostException;
 import java.util.Random;
 
 import com.google.gson.Gson;
@@ -33,62 +32,54 @@ public class MongoTest {
 		// Enable DB operation tracing
 		System.setProperty("DB.TRACE", "true");
 
-		MongoClient mongo;
-		try {
-			mongo = new MongoClient(HOST, 27017);
+		MongoClient mongo = new MongoClient(HOST, 27017);
 
-			DB db = mongo.getDB(DATABASE);
+		DB db = mongo.getDB(DATABASE);
 
-			DBCollection dbCollection = db.getCollection("games");
+		DBCollection dbCollection = db.getCollection("games");
 
-			Game game = new Game(LIMIT);
+		Game game = new Game(LIMIT);
 
-			Player player = new OnceBurned(LIMIT, new Random(System.nanoTime()));
+		Player player = new OnceBurned(LIMIT, new Random(System.nanoTime()));
 
-			while (!Validator.isComplete(game.getSolution()) && !player.giveUp()) {
+		while (!Validator.isComplete(game.getSolution()) && !player.giveUp()) {
 
-				int[] newPosition = player.nextPosition();
+			int[] newPosition = player.nextPosition();
 
-				player.digest(newPosition, game.addPosition(newPosition[0], newPosition[1]));
+			player.digest(newPosition, game.addPosition(newPosition[0], newPosition[1]));
 
-			}
-
-			Solution solution = game.getSolution();
-			Permutator.permutate(solution);
-
-			Gson gson = new GsonBuilder().create();
-
-			boolean unique = true;
-
-			for (int[] permutation : solution.getPermutations()) {
-
-				String jsonString = gson.toJson(permutation);
-
-				DBObject arrayDBObject = (DBObject) JSON.parse(jsonString);
-
-				BasicDBObject query = new BasicDBObject("permutations", arrayDBObject);
-
-				DBCursor dbCursor = dbCollection.find(query);
-
-				if (dbCursor.count() > 0) {
-					unique = false;
-					return;
-				}
-
-			}
-
-			if (unique) {
-				String jsonString = gson.toJson(solution);
-
-				DBObject dbObject = (DBObject) JSON.parse(jsonString);
-
-				dbCollection.insert(dbObject);
-			}
-
-		} catch (UnknownHostException unknownHostException) {
-
-			unknownHostException.printStackTrace();
 		}
 
+		Solution solution = game.getSolution();
+		Permutator.permutate(solution);
+
+		Gson gson = new GsonBuilder().create();
+
+		boolean unique = true;
+
+		for (int[] permutation : solution.getPermutations()) {
+
+			String jsonString = gson.toJson(permutation);
+
+			DBObject arrayDBObject = (DBObject) JSON.parse(jsonString);
+
+			BasicDBObject query = new BasicDBObject("permutations", arrayDBObject);
+
+			DBCursor dbCursor = dbCollection.find(query);
+
+			if (dbCursor.count() > 0) {
+				unique = false;
+				return;
+			}
+
+		}
+
+		if (unique) {
+			String jsonString = gson.toJson(solution);
+
+			DBObject dbObject = (DBObject) JSON.parse(jsonString);
+
+			dbCollection.insert(dbObject);
+		}
 	}
 }

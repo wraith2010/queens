@@ -1,6 +1,5 @@
 package com.ten31f.queens.v1;
 
-import java.net.UnknownHostException;
 import java.util.Random;
 
 import com.mongodb.DB;
@@ -19,26 +18,20 @@ public class MakeData {
 	public static void main(String[] args) {
 
 		MongoClient mongo;
-		try {
-			mongo = new MongoClient(HOST, 27017);
+		mongo = new MongoClient(HOST, 27017);
 
-			DB db = mongo.getDB(DATABASE);
+		DB db = mongo.getDB(DATABASE);
 
-			Player player = new OnceBurned(N, new Random(System.nanoTime()));
+		Player player = new OnceBurned(N, new Random(System.nanoTime()));
 
-			String collection = N + "OneThousandGames";
+		String collection = N + "OneThousandGames";
 
-			OneThousandGames oneThousandGames = new OneThousandGames(N, db, player, collection);
+		OneThousandGames oneThousandGames = new OneThousandGames(N, db, player, collection);
 
-			oneThousandGames.run();
+		oneThousandGames.run();
 
-			System.out.println("Rejected:\t" + oneThousandGames.getRejected());
-			System.out.println("Recorded:\t" + oneThousandGames.getRecorded());
-
-		} catch (UnknownHostException unknownHostException) {
-
-			unknownHostException.printStackTrace();
-		}
+		System.out.println("Rejected:\t" + oneThousandGames.getRejected());
+		System.out.println("Recorded:\t" + oneThousandGames.getRecorded());
 
 	}
 

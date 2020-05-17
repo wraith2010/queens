@@ -16,3 +16,5 @@
 /queens-genetic/*.gitignore
 /queens-genetic/*.project
 /queens-genetic/.settings/*.prefs
+/queens-genetic/target
+/queens-genetic/.settings

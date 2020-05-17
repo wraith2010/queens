@@ -1,6 +1,5 @@
 package com.ten31f.queens.v1;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -45,20 +44,13 @@ public class FitnessTest2 {
 		if (target < 1)
 			return;
 
-		MongoClient mongo;
-		try {
-			mongo = new MongoClient(HOST, 27017);
+		MongoClient mongo = new MongoClient(HOST, 27017);
 
-			DB db = mongo.getDB(DATABASE);
+		DB db = mongo.getDB(DATABASE);
 
-			CatchThemAll catchThemAll = new CatchThemAll(n, db, player, collectionName, target);
+		CatchThemAll catchThemAll = new CatchThemAll(n, db, player, collectionName, target);
 
-			catchThemAll.run();
-
-		} catch (UnknownHostException unknownHostException) {
-
-			unknownHostException.printStackTrace();
-		}
+		catchThemAll.run();
 
 	}
 
