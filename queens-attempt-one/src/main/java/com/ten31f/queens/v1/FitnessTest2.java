@@ -46,11 +46,13 @@ public class FitnessTest2 {
 
 		MongoClient mongo = new MongoClient(HOST, 27017);
 
-		DB db = mongo.getDB(DATABASE);
+		DB db = (DB) mongo.getDatabase(DATABASE);
 
 		CatchThemAll catchThemAll = new CatchThemAll(n, db, player, collectionName, target);
 
 		catchThemAll.run();
+		
+		mongo.close();
 
 	}
 

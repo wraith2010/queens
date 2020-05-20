@@ -6,14 +6,10 @@ import org.bson.BsonArray;
 import org.bson.BsonInt32;
 import org.bson.Document;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.util.JSON;
 import com.ten31f.queens.domain.Solution;
 
 public class SolutionRepo {
@@ -38,9 +34,9 @@ public class SolutionRepo {
 		setDatabaseName(databaseName);
 	}
 
-	public SaveOutcome save(Solution solution) {
+	public synchronized SaveOutcome save(Solution solution) {
 
-		MongoCollection mongoCollection = getMongoClient().getDatabase(getDatabaseName())
+		MongoCollection<Document> mongoCollection = getMongoClient().getDatabase(getDatabaseName())
 				.getCollection(caculateColletionName(solution));
 
 		Document document = new Document(JSON_KEY_N, solution.getN());
@@ -64,7 +60,7 @@ public class SolutionRepo {
 
 	public boolean isUnique(Solution solution) {
 
-		MongoCollection mongoCollection = getMongoClient().getDatabase(getDatabaseName())
+		MongoCollection<Document> mongoCollection = getMongoClient().getDatabase(getDatabaseName())
 				.getCollection(caculateColletionName(solution));
 
 		for (int[] permutation : solution.getPermutations()) {

@@ -21,6 +21,12 @@ public class Solution {
 		Arrays.fill(getPrimary(), 0, (int) n, -1);
 	}
 
+	public Solution(int[] positions) {
+		setN(positions.length);
+		setPermutations(new ArrayList<int[]>());
+		getPermutations().add(positions);	
+	}
+
 	public long getN() {
 		return n;
 	}
@@ -43,7 +49,7 @@ public class Solution {
 
 		getPrimary()[y] = x;
 	}
-	
+
 	public boolean isSolved() {
 		return solved;
 	}
@@ -72,12 +78,11 @@ public class Solution {
 		StringBuilder stringBuilder = new StringBuilder();
 
 		stringBuilder.append(System.lineSeparator());
-		
-		for(int[] permutation: getPermutations()) {
+
+		for (int[] permutation : getPermutations()) {
 			stringBuilder.append(Arrays.toString(permutation));
 			stringBuilder.append(System.lineSeparator());
 		}
-				
 
 		stringBuilder.append(System.lineSeparator());
 		for (int y = 0; y < n; y++) {

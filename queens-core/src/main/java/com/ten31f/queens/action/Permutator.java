@@ -13,7 +13,8 @@ public class Permutator {
 		addMirror(solution, findhorizontalMirror(solution.getPrimary()));
 		addMirror(solution, findverticalMirror(solution.getPrimary()));
 		addMirror(solution, findverticalMirror(findhorizontalMirror(solution.getPrimary())));
-		addMirror(solution, findNinteyDegreeMirror(solution.getPrimary()));
+		addMirror(solution, findNinteyDegreeMirror((solution.getPrimary())));
+		addMirror(solution, findhorizontalMirror(findNinteyDegreeMirror((solution.getPrimary()))));
 		addMirror(solution, findverticalMirror(findNinteyDegreeMirror(solution.getPrimary())));
 		addMirror(solution, findverticalMirror(findhorizontalMirror(findNinteyDegreeMirror(solution.getPrimary()))));
 

@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>queens-genetic</artifactId>
-	<name>d</name>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>queens-generator</artifactId>
+	<name>queens-generator</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
@@ -60,10 +60,6 @@
 			<artifactId>log4j</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-		</dependency>
-
 	</dependencies>
+
 </project>

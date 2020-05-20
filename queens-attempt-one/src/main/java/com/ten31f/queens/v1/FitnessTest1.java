@@ -32,7 +32,7 @@ public class FitnessTest1 {
 
 		MongoClient mongo = new MongoClient(HOST, 27017);
 
-		DB db = mongo.getDB(DATABASE);
+		DB db = (DB) mongo.getDatabase(DATABASE);
 
 		// Player player = new OnceBurned(n, new Random(System.nanoTime()));
 		Player player = new RollingSolution(n, new Random(System.nanoTime()));
@@ -44,6 +44,8 @@ public class FitnessTest1 {
 
 		catchThemAll.run();
 
+		mongo.close();
+		
 	}
 
 }

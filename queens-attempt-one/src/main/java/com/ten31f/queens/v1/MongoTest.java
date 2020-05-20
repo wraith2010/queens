@@ -34,7 +34,7 @@ public class MongoTest {
 
 		MongoClient mongo = new MongoClient(HOST, 27017);
 
-		DB db = mongo.getDB(DATABASE);
+		DB db = (DB) mongo.getDatabase(DATABASE);
 
 		DBCollection dbCollection = db.getCollection("games");
 
@@ -81,5 +81,7 @@ public class MongoTest {
 
 			dbCollection.insert(dbObject);
 		}
+		
+		mongo.close();
 	}
 }

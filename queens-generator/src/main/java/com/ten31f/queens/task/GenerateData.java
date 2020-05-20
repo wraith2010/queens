@@ -1,8 +1,5 @@
 package com.ten31f.queens.task;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 import com.ten31f.queens.action.Permutator;
@@ -14,21 +11,20 @@ import com.ten31f.queens.repo.SolutionRepo;
 import com.ten31f.queens.repo.SolutionRepo.SaveOutcome;
 import com.ten31f.queens.values.KNOWNSOLUTIONS;
 
-public class GenerateData {
+public class GenerateData implements Runnable {
 
 	static final Logger logger = Logger.getLogger(GenerateData.class);
 
 	private static final String ERROR_MESSAGE_UNKONW_LIMIT = "Unknown fundamental limit for boardsize: %s";
 
 	private long n = 0;
-	private List<Solution> solutions = null;
+	public static long solutionCount = 0;
 	private Engine engine = null;
 
 	private SolutionRepo solutionRepo = null;
 
 	public GenerateData(long n, Engine engine, SolutionRepo solutionRepo) {
 		setN(n);
-		setSolutions(new ArrayList<>());
 		setEngine(engine);
 		setSolutionRepo(solutionRepo);
 	}
@@ -41,6 +37,7 @@ public class GenerateData {
 		this.n = n;
 	}
 
+	@Override
 	public void run() {
 		if (getN() > KNOWNSOLUTIONS.FUNDAMENTAL.length) {
 			logger.error(String.format(ERROR_MESSAGE_UNKONW_LIMIT, getN()));
@@ -49,7 +46,7 @@ public class GenerateData {
 
 		long limit = KNOWNSOLUTIONS.FUNDAMENTAL[(int) (getN() - 1)];
 
-		while (getSolutions().size() < limit) {
+		while (solutionCount < limit) {
 
 			getEngine().reset();
 
@@ -62,9 +59,11 @@ public class GenerateData {
 
 			if (Validator.validate(solution)) {
 				Permutator.permutate(solution);
-				logger.info(solution);
 				if (SaveOutcome.UNIQUE == getSolutionRepo().save(solution)) {
-					getSolutions().add(solution);
+					logger.info(solution);
+					solutionCount++;
+					System.out.println(solutionCount + "/" + limit);
+					System.out.println(solution);
 				}
 			}
 
@@ -86,14 +85,6 @@ public class GenerateData {
 
 		return Outcome.CLEAR;
 
-	}
-
-	public List<Solution> getSolutions() {
-		return solutions;
-	}
-
-	private void setSolutions(List<Solution> solutions) {
-		this.solutions = solutions;
 	}
 
 	private Engine getEngine() {

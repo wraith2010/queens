@@ -20,7 +20,7 @@ public class MakeData {
 		MongoClient mongo;
 		mongo = new MongoClient(HOST, 27017);
 
-		DB db = mongo.getDB(DATABASE);
+		DB db = (DB) mongo.getDatabase(DATABASE);
 
 		Player player = new OnceBurned(N, new Random(System.nanoTime()));
 
@@ -32,6 +32,8 @@ public class MakeData {
 
 		System.out.println("Rejected:\t" + oneThousandGames.getRejected());
 		System.out.println("Recorded:\t" + oneThousandGames.getRecorded());
+
+		mongo.close();
 
 	}
 

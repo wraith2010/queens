@@ -1,11 +1,12 @@
 package com.ten31f.queens.engine;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
+
+import org.apache.log4j.Logger;
 
 /**
  * Once Burned Twice Shy
@@ -14,6 +15,8 @@ import java.util.Random;
  *
  */
 public class OnceBurned extends AbstractEngine implements Engine {
+
+	static final Logger logger = Logger.getLogger(OnceBurned.class);
 
 	private long guesses = 0;
 
@@ -50,13 +53,25 @@ public class OnceBurned extends AbstractEngine implements Engine {
 	@Override
 	public int[] nextPosition() {
 
-		int x = getRandom().nextInt(getxValues().size());
-		int y = getRandom().nextInt(getyValues().size());
+		Collection<Integer> xColletion = getxValues().values();
+		Collection<Integer> yColletion = getyValues().values();
 
-		List<Entry<Integer, Integer>> xPositions = new ArrayList<>(getxValues().entrySet());
-		List<Entry<Integer, Integer>> yPositions = new ArrayList<>(getyValues().entrySet());
+		return new int[] { randomValue(xColletion), randomValue(yColletion) };
+	}
 
-		return new int[] { xPositions.get(x).getValue(), yPositions.get(y).getValue() };
+	public int randomValue(Collection<Integer> colletion) {
+
+		Iterator<Integer> iterator = colletion.iterator();
+
+		int index = (colletion.size() > 0) ? getRandom().nextInt(colletion.size()) : 0;
+
+		if (index != 0) {
+			for (int x = 0; x < index; x++) {
+				iterator.next();
+			}
+		}
+
+		return iterator.next();
 	}
 
 	@Override

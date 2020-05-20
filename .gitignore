@@ -18,3 +18,12 @@
 /queens-genetic/.settings/*.prefs
 /queens-genetic/target
 /queens-genetic/.settings
+/queens-attempt-one/*.classpath
+/queens-attempt-one/*.project
+/queens-attempt-one/.settings/*.prefs
+/queens-attempt-one/target
+/.settings
+/queens-generator/*.classpath
+/queens-generator/*.project
+/queens-generator/.settings/*.prefs
+/queens-generator/target
