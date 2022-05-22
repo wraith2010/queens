@@ -5,17 +5,15 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ten31f.queens.domain.Solution;
 
 public class PermutatorTest {
 
-	static final Logger logger = Logger.getLogger(PermutatorTest.class);
+	static final Logger logger = Logger.getLogger(PermutatorTest.class.getName());
 
 	public static final int[] INITIAL_POSITTION = { 4, 6, 0, 3, 1, 7, 5, 2 };
 	public static final int[] POSITION_FIRST_ORDER = { 2, 4, 7, 3, 0, 6, 1, 5 };
@@ -24,11 +22,6 @@ public class PermutatorTest {
 	public static final int[] POSITION_03 = { 5, 1, 6, 0, 3, 7, 4, 2 };
 	public static final int[] POSITION_04 = { 5, 2, 0, 6, 4, 7, 1, 3 };
 	public static final int[] POSITION_05 = { 5, 3, 0, 4, 7, 1, 6, 2 };
-
-	@BeforeClass
-	public static void setup() {
-		BasicConfigurator.configure();
-	}
 
 	@Test
 	public void test() {

@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
+
 
 /**
  * Once Burned Twice Shy
@@ -16,7 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class OnceBurned extends AbstractEngine implements Engine {
 
-	static final Logger logger = Logger.getLogger(OnceBurned.class);
+	static final Logger logger = Logger.getLogger(OnceBurned.class.getName());
 
 	private long guesses = 0;
 

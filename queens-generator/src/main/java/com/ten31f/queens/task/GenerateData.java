@@ -1,6 +1,8 @@
 package com.ten31f.queens.task;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+
+import java.util.logging.Level;
 
 import com.ten31f.queens.action.Permutator;
 import com.ten31f.queens.action.Validator;
@@ -13,7 +15,7 @@ import com.ten31f.queens.values.KNOWNSOLUTIONS;
 
 public class GenerateData implements Runnable {
 
-	static final Logger logger = Logger.getLogger(GenerateData.class);
+	static final Logger logger = Logger.getLogger(GenerateData.class.getName());
 
 	private static final String ERROR_MESSAGE_UNKONW_LIMIT = "Unknown fundamental limit for boardsize: %s";
 
@@ -40,7 +42,7 @@ public class GenerateData implements Runnable {
 	@Override
 	public void run() {
 		if (getN() > KNOWNSOLUTIONS.FUNDAMENTAL.length) {
-			logger.error(String.format(ERROR_MESSAGE_UNKONW_LIMIT, getN()));
+			logger.log(Level.SEVERE, ERROR_MESSAGE_UNKONW_LIMIT);
 			return;
 		}
 
@@ -60,7 +62,7 @@ public class GenerateData implements Runnable {
 			if (Validator.validate(solution)) {
 				Permutator.permutate(solution);
 				if (SaveOutcome.UNIQUE == getSolutionRepo().save(solution)) {
-					logger.info(solution);
+					logger.log(Level.INFO, solution.toString());
 					solutionCount++;
 					System.out.println(solutionCount + "/" + limit);
 					System.out.println(solution);
