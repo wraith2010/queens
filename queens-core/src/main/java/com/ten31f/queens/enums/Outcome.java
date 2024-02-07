@@ -1,4 +1,4 @@
-package com.ten31f.queens.v1.concepts;
+package com.ten31f.queens.enums;
 
 public enum Outcome {
 	

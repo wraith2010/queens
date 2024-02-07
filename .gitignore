@@ -27,3 +27,9 @@
 /queens-generator/*.project
 /queens-generator/.settings/*.prefs
 /queens-generator/target
+/queens-web/.classpath
+/queens-web/.gitignore
+/queens-web/.project
+/queens-web/.settings/org.eclipse.core.resources.prefs
+/queens-web/.settings/org.eclipse.jdt.core.prefs
+/queens-web/.settings/org.eclipse.m2e.core.prefs

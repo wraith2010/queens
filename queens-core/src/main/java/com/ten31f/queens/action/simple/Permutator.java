@@ -1,8 +1,10 @@
-package com.ten31f.queens.action;
+package com.ten31f.queens.action.simple;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import com.ten31f.queens.domain.Solution;
 
@@ -12,17 +14,21 @@ public class Permutator {
 
 	}
 
-	public static void permutate(Solution solution) {
+	public static int[] findSimplestSolution(int[] board) {
 
-		addMirror(solution, findhorizontalMirror(solution.getPrimary()));
-		addMirror(solution, findverticalMirror(solution.getPrimary()));
-		addMirror(solution, findverticalMirror(findhorizontalMirror(solution.getPrimary())));
-		addMirror(solution, findNinteyDegreeMirror((solution.getPrimary())));
-		addMirror(solution, findhorizontalMirror(findNinteyDegreeMirror((solution.getPrimary()))));
-		addMirror(solution, findverticalMirror(findNinteyDegreeMirror(solution.getPrimary())));
-		addMirror(solution, findverticalMirror(findhorizontalMirror(findNinteyDegreeMirror(solution.getPrimary()))));
+		List<int[]> boards = new ArrayList<>();
 
-		Collections.sort(solution.getPermutations(), new Comparator<int[]>() {
+		boards.add(board);
+
+		boards.add(findhorizontalMirror(board));
+		boards.add(findverticalMirror(board));
+		boards.add(findverticalMirror(findhorizontalMirror(board)));
+		boards.add(findNinteyDegreeMirror(board));
+		boards.add(findhorizontalMirror(findNinteyDegreeMirror(board)));
+		boards.add(findverticalMirror(findNinteyDegreeMirror(board)));
+		boards.add(findverticalMirror(findhorizontalMirror(findNinteyDegreeMirror(board))));
+
+		Collections.sort(boards, new Comparator<int[]>() {
 
 			@Override
 			public int compare(int[] o1, int[] o2) {
@@ -38,6 +44,8 @@ public class Permutator {
 				return 0;
 			}
 		});
+
+		return boards.get(0);
 	}
 
 	public static boolean addMirror(Solution solution, int[] permutation) {

@@ -4,6 +4,10 @@ import com.ten31f.queens.domain.Solution;
 
 public class Validator {
 
+	private Validator() {
+
+	}
+
 	public static boolean validate(Solution solution) {
 
 		if (solution.isSolved())

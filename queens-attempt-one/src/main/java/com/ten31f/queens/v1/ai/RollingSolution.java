@@ -5,10 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import com.ten31f.queens.enums.Outcome;
+
 import java.util.Random;
 
-import com.ten31f.queens.v1.concepts.Outcome;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class RollingSolution extends AbstractPlayer implements Player {
 
 	private long guesses = 0;
@@ -42,11 +48,11 @@ public class RollingSolution extends AbstractPlayer implements Player {
 	@Override
 	public int[] nextPosition() {
 
-		int x = getRandom().nextInt(getFiles().size());
+		int x = getRandom().nextInt((getFiles().size() > 0) ? getFiles().size() : 1);
 
 		List<Entry<Integer, Integer>> filespositions = new ArrayList<>(getFiles().entrySet());
 
-		return new int[] {filespositions.get(x).getValue(), getRow()};
+		return new int[] { filespositions.get(x).getValue(), getRow() };
 	}
 
 	@Override
@@ -82,30 +88,6 @@ public class RollingSolution extends AbstractPlayer implements Player {
 	@Override
 	public boolean giveUp() {
 		return getGuesses() <= 0;
-	}
-
-	protected void setGuesses(long guesses) {
-		this.guesses = guesses;
-	}
-
-	protected long getGuesses() {
-		return guesses;
-	}
-
-	protected Map<Integer, Integer> getFiles() {
-		return files;
-	}
-
-	protected void setFiles(Map<Integer, Integer> files) {
-		this.files = files;
-	}
-
-	protected void setRow(int row) {
-		this.row = row;
-	}
-
-	protected int getRow() {
-		return row;
 	}
 
 	protected void advanceRow() {

@@ -1,21 +1,19 @@
 package com.ten31f.queens.v1.concepts;
 
 import com.ten31f.queens.domain.Solution;
+import com.ten31f.queens.enums.Outcome;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Game {
 
 	private Solution solution = null;
 
 	public Game(int n) {
 		setSolution(new Solution(n));
-	}
-
-	public Solution getSolution() {
-		return solution;
-	}
-
-	private void setSolution(Solution solution) {
-		this.solution = solution;
 	}
 
 	public void addPositionBlind(int x, int y) {

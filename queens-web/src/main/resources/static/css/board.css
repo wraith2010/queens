@@ -1,0 +1,40 @@
+section {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.board {
+	width: 80%;
+}
+
+.board div {
+	display: inline-grid;
+	gap: 5px
+}
+
+.square {
+	width: 30px;
+	height: 30px;
+	border: solid 1px #EAAA00;
+}
+
+.square img {
+	width: 100%;
+}
+
+.row:nth-child(odd) div:nth-child(odd) {
+	background-color: #000000;
+}
+
+.row:nth-child(odd) div:nth-child(even) {
+	background-color: #FCBF49;
+}
+
+.row:nth-child(even) div:nth-child(odd) {
+	background-color: #FCBF49;
+}
+
+.row:nth-child(even) div:nth-child(even) {
+	background-color: #000000;
+}

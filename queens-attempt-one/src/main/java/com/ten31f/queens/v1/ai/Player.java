@@ -1,6 +1,6 @@
 package com.ten31f.queens.v1.ai;
 
-import com.ten31f.queens.v1.concepts.Outcome;
+import com.ten31f.queens.enums.Outcome;
 
 public interface Player {
 

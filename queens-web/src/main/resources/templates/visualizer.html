@@ -1,0 +1,32 @@
+<html>
+
+<head>
+<title>Home Page</title>
+
+<link th:href="@{/css/common.css}" rel="stylesheet" />
+<link th:href="@{/css/board.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+	<h1 th:text="${appName}"></h1>
+	<main>
+
+		<section th:each="set : ${sets}">
+			<header>
+				<h2 th:text="'Count: ' + ${set.size}"></h2>
+			</header>
+			<article class="board" th:each="game: ${set}">
+				<div class="row"
+					th:each="y : ${#numbers.sequence( 0, game.length-1)}">
+					<div class="square"
+						th:each="x : ${#numbers.sequence( 0, game.length-1)}">
+						<img th:if="${game[y] == x}" th:src="@{/img/queen.png}" />
+					</div>
+				</div>
+			</article>
+		</section>
+	</main>
+</body>
+
+</html>

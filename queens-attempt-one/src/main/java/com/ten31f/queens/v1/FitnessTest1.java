@@ -13,7 +13,6 @@ public class FitnessTest1 {
 	private static long[] knownSolutions = { 1, 2, 1, 6, 12, 46, 92, 341, 1787, 9233, 45752, 285053, 1846955, 11977939,
 			83263591, 621012754 };
 
-	// private static final String HOST = "192.168.1.51";
 	private static final String HOST = "1031f.com";
 	private static final String DATABASE = "queens";
 

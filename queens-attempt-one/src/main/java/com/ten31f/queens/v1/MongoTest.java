@@ -55,8 +55,6 @@ public class MongoTest {
 
 		Gson gson = new GsonBuilder().create();
 
-		boolean unique = true;
-
 		for (int[] permutation : solution.getPermutations()) {
 
 			String jsonString = gson.toJson(permutation);
@@ -68,20 +66,17 @@ public class MongoTest {
 			DBCursor dbCursor = dbCollection.find(query);
 
 			if (dbCursor.count() > 0) {
-				unique = false;
 				return;
 			}
 
 		}
 
-		if (unique) {
-			String jsonString = gson.toJson(solution);
+		String jsonString = gson.toJson(solution);
 
-			DBObject dbObject = (DBObject) JSON.parse(jsonString);
+		DBObject dbObject = (DBObject) JSON.parse(jsonString);
 
-			dbCollection.insert(dbObject);
-		}
-		
+		dbCollection.insert(dbObject);
+
 		mongo.close();
 	}
 }

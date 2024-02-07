@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Solution {
 
 	private static final String SQUARE = "[%s]";
@@ -24,23 +29,7 @@ public class Solution {
 	public Solution(int[] positions) {
 		setN(positions.length);
 		setPermutations(new ArrayList<int[]>());
-		getPermutations().add(positions);	
-	}
-
-	public long getN() {
-		return n;
-	}
-
-	public void setN(long n) {
-		this.n = n;
-	}
-
-	private void setInitialPosition(int initialPosition) {
-		this.initialPosition = initialPosition;
-	}
-
-	public int getInitialPosition() {
-		return initialPosition;
+		getPermutations().add(positions);
 	}
 
 	public void setPosition(int x, int y) {
@@ -48,22 +37,6 @@ public class Solution {
 			setInitialPosition(y);
 
 		getPrimary()[y] = x;
-	}
-
-	public boolean isSolved() {
-		return solved;
-	}
-
-	public void setSolved(boolean solved) {
-		this.solved = solved;
-	}
-
-	public List<int[]> getPermutations() {
-		return permutations;
-	}
-
-	private void setPermutations(List<int[]> permutations) {
-		this.permutations = permutations;
 	}
 
 	public int[] getPrimary() {

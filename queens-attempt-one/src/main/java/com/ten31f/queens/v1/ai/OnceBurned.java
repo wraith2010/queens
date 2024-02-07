@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 
-import com.ten31f.queens.v1.concepts.Outcome;
+import com.ten31f.queens.enums.Outcome;
+
+import java.util.Random;
 
 /**
  * Once Burned Twice Shy
