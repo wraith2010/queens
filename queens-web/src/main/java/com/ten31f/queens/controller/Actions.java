@@ -2,7 +2,9 @@ package com.ten31f.queens.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Actions {
 
@@ -16,14 +18,13 @@ public class Actions {
 		elements[b] = tmp;
 	}
 
-	public static List<int[]> expand(List<int[]> sources) {
+	public static Set<int[]> expand(Set<int[]> sources) {
 
-		List<int[]> results = new ArrayList<>();
+		Set<int[]> results = new HashSet<>();
 
 		sources.stream().forEach(source -> results.addAll(expand(source).stream().filter(Actions::validate).toList()));
 
 		return results;
-
 	}
 
 	private static List<int[]> expand(int[] source) {

@@ -15,6 +15,13 @@
 		<version>1.0</version>
 	</parent>
 
+	<description>The generator project: Attempt at the nqueens via improved
+		randomization approach. Hypothis was could we generate 25% percent of
+		all possible games for a given value of N and besure that all legitimate
+		games were found. So far results were not possitive. This approache is
+		also definetly less efficent the the Latin Square approch recently
+		published.</description>
+
 	<build>
 		<plugins>
 			<plugin>
