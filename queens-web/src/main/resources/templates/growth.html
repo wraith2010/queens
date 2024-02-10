@@ -12,9 +12,10 @@
 </head>
 
 <body>
-	<h1 th:text="${appName}"></h1>
+	<header>
+		<h1 th:text="${appName}"></h1>
+	</header>
 	<main>
-
 		<section th:each="set : ${sets}">
 			<header>
 				<h2 th:text="'Count: ' + ${set.size}"></h2>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="board" th:fragment="board(game)">
+		<div class="row" th:each="y : ${#numbers.sequence( 0, game.size()-1)}">
+			<div class="square"
+				th:each="x : ${#numbers.sequence( 0, game.size()-1)}">
+				<img th:if="${game[y] == x}" th:src="@{/img/queen.png}" />
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,22 @@
+article {
+	width: 28%;
+}
+
+#knowSolutions {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#knowSolutions header, #knowSolutions p {
+	grid-column: 1/3;
+}
+
+#knowSolutions ul {
+	grid-column: 1;
+	grid-row: 3/5;
+}
+
+#knowSolutions figure {
+	grid-column: 2;
+	margin: 0px;
+}

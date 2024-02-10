@@ -6,33 +6,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Actions {
 
 	private Actions() {
 
 	}
 
-	private static void swap(int[] elements, int a, int b) {
+	private static void swap(Integer[] elements, int a, int b) {
 		int tmp = elements[a];
 		elements[a] = elements[b];
 		elements[b] = tmp;
 	}
 
-	public static Set<int[]> expand(Set<int[]> sources) {
+	public static Set<Integer[]> expand(Set<Integer[]> sources) {
 
-		Set<int[]> results = new HashSet<>();
+		Set<Integer[]> results = new HashSet<>();
 
 		sources.stream().forEach(source -> results.addAll(expand(source).stream().filter(Actions::validate).toList()));
 
 		return results;
 	}
 
-	private static List<int[]> expand(int[] source) {
+	private static List<Integer[]> expand(Integer[] source) {
 
-		List<int[]> results = new ArrayList<>();
+		List<Integer[]> results = new ArrayList<>();
 
 		for (int index = 0; index < source.length + 1; index++) {
-			int[] board = new int[source.length + 1];
+			Integer[] board = new Integer[source.length + 1];
 			board[index] = source.length;
 
 			for (int subIndex = 0; subIndex <= source.length; subIndex++) {
@@ -50,18 +53,20 @@ public class Actions {
 
 	}
 
-	public static List<int[]> permute(int size) {
+	public static List<Integer[]> permute(int size) {
 
-		int[] elements = new int[size];
+		Integer[] elements = new Integer[size];
 		for (int index = 0; index < size; index++) {
 			elements[index] = index;
 		}
 
-		return permute(size, elements, new ArrayList<>());
+		List<Integer[]> results = permute(size, elements, new ArrayList<>());
+		log.info(String.format("(n = %s ==> %s)", size, results.size()));
+		return results;
 
 	}
 
-	private static List<int[]> permute(int n, int[] elements, List<int[]> results) {
+	private static List<Integer[]> permute(int n, Integer[] elements, List<Integer[]> results) {
 
 		if (n == 1) {
 			results.add(Arrays.copyOf(elements, elements.length));
@@ -80,7 +85,7 @@ public class Actions {
 		return results;
 	}
 
-	public static boolean validate(int[] elements) {
+	public static boolean validate(Integer[] elements) {
 
 		for (int y = 0; y < elements.length; y++) {
 			for (int index = 0; index < elements.length; index++) {

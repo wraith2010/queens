@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title th:text="${appName}"></title>
+
+
+<link th:href="@{/css/common.css}" rel="stylesheet" />
+<link th:href="@{/css/board.css}" rel="stylesheet" />
+<link th:href="@{/css/brute.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+	<header>
+		<h1 th:text="${appName}"></h1>
+	</header>
+	<main>
+		<section style="display: flex;">
+			<header>
+				<h3
+					th:text="'N = ' + ${n} + '(' + ${fundamental[n-1]} + ')(' + ${all[n-1]} +')'"></h3>
+			</header>
+			<article th:each="game: ${games}">
+				<div th:replace="~{fragments/board.html :: board(${game}) }"></div>
+				<h3 th:text="${game}"></h3>
+			</article>
+		</section>
+	</main>
+</body>
+
+</html>

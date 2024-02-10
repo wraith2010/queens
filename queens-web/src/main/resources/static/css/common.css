@@ -1,5 +1,6 @@
 body {
-	background-color: #1F2122;
+	background-color: #ffffff;
+	color: #f1c232;
 }
 
 h1, h2, h3 {
@@ -7,23 +8,33 @@ h1, h2, h3 {
 }
 
 main {
-	background-color: #27292a;
-	width: 80%;
-	margin: 0 auto;
+	background-color: #0095C8;
+	width: 75%;
+	margin: 10px auto;
+	padding: 10px 30px;
+	border-radius: 30px;
+}
+
+main div {
+	margin: auto;
 }
 
 section {
-	background-color: #1F2122;
-	padding: 30px;
+	display: flex;
+	flex-flow: wrap;
 }
 
 section header {
-	grid-column: 1/4;
-	background-color: #1F2122;
-	padding: 30px;
+	width: 100%;
 }
 
-section p {
-	grid-column: 1/4;
-	color: #f1c232;
+section article {
+	margin: 10px;
+	background-color: #A9431E;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+section article header {
+	text-align: center;
 }
