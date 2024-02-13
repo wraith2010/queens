@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.ten31f.queens.boardtools.Permutator;
+import com.ten31f.queens.boardtools.Validator;
+
 @Controller
 public class GrowthController {
 
@@ -21,13 +24,13 @@ public class GrowthController {
 
 		List<Set<Integer[]>> sets = new ArrayList<>();
 
-		sets.add(Actions.permute(4).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(5).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(6).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(7).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(8).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(9).stream().filter(Actions::validate).collect(Collectors.toSet()));
-		sets.add(Actions.permute(10).stream().filter(Actions::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(4).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(5).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(6).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(7).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(8).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(9).stream().filter(Validator::validate).collect(Collectors.toSet()));
+		sets.add(Permutator.permute(10).stream().filter(Validator::validate).collect(Collectors.toSet()));
 
 		model.addAttribute("appName", appName);
 		model.addAttribute("sets", sets);

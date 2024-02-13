@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.ten31f.queens.boardtools.Permutator;
 import com.ten31f.queens.boardtools.Simplifiier;
+import com.ten31f.queens.boardtools.Validator;
 import com.ten31f.queens.values.KNOWNSOLUTIONS;
 
 import lombok.Getter;
@@ -28,9 +30,7 @@ public class BruteForceController {
 	@GetMapping("/brute/{n}")
 	public String brutePage(@PathVariable("n") int n, Model model) {
 
-		Actions.permute(n);
-
-		Set<List<Integer>> games = Actions.permute(n).stream().filter(Actions::validate)
+		Set<List<Integer>> games = Permutator.permute(n).stream().filter(Validator::validate)
 				.map(Simplifiier::findLowestOrderBoard).map(Arrays::asList).collect(Collectors.toSet());
 
 		model.addAttribute("appName", appName);
