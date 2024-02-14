@@ -19,6 +19,7 @@ public class ExpanderV2Test {
 	@Test
 	public void expanderNEquals7Test() {
 
+		@SuppressWarnings("serial")
 		List<Integer[]> nEquals5 = new ArrayList<>() {
 			{
 				add(new Integer[] { 1, 4, 2, 0, 3 });
@@ -26,6 +27,7 @@ public class ExpanderV2Test {
 			}
 		};
 
+		@SuppressWarnings("serial")
 		List<Integer[]> nEquals6 = new ArrayList<>() {
 			{
 				add(new Integer[] { 1, 3, 5, 0, 2, 4 });
